@@ -6,19 +6,18 @@
 #define CARA 1
 #define COROA 2
 
-int inicializacao();
-int menu();
+long long int  inicializacao();
+long long int  menu();
 
-void resultado(int qtd, int caras, int coroas);
-float calculo(int a, int qtd);
+void resultado(long long int  qtd, long long int  caras, long long int  coroas);
+double calculo(long long int  a, long long int  qtd);
 
-int rodaJogos(int qtd);
-int simulaJogo();
+long long int  rodaJogos(long long int  qtd);
 
-int main() {
+long long int  main() {
     inicializacao();
     
-    int qtd, caras, coroas, res;
+    long long int  qtd, caras, coroas, res;
 
     while(true) {
         system("cls");
@@ -41,53 +40,44 @@ int main() {
     return 0;
 }
 
-int inicializacao() {
+long long int  inicializacao() {
     srand(time(NULL));
 }
 
-int menu() {
-    int qtd;
+long long int  menu() {
+    long long int  qtd;
 
     printf("###################################################\n");
     printf("BEM VINDO AO SIMULADOR DE CARA OU COROA\n");
     printf("---------------------------------------------------\n");
     printf("Digite a quantidade de jogos (-1 para sair) -> ");
 
-    scanf("%i", &qtd);
+    scanf("%lld", &qtd);
 
     return qtd;
 }
 
-void resultado(int qtd, int caras, int coroas) {
+void resultado(long long int  qtd, long long int  caras, long long int  coroas) {
 
     printf("---------------------------------------------------\n");
-    printf("N DE JOGOS: %i\n", qtd);
-    printf("CARAS: %i - (%f%%)\n", caras, calculo(caras, qtd));
-    printf("COROAS: %i - (%f%%)\n)", coroas, calculo(coroas, qtd));
+    printf("N DE JOGOS: %lld\n", qtd);
+    printf("CARAS: %lld - (%lf%%)\n", caras, calculo(caras, qtd));
+    printf("COROAS: %lld - (%lf%%)\n)", coroas, calculo(coroas, qtd));
     printf("---------------------------------------------------\n\n");
     // printf("Pressione qualquer tecla para continuar...");
     system("PAUSE");
 }
 
-float calculo(int a, int qtd) {
-    return ((float) a / qtd) * 100;
+double calculo(long long int  a, long long int  qtd) {
+    return ((double) a / qtd) * 100;
 }
 
-int rodaJogos(int qtd) {
-    int caras = 0;
+long long int  rodaJogos(long long int  qtd) {
+    long long int  caras = 0;
 
-    for(int i = 0; i < qtd; i++) {
-        if(simulaJogo() == CARA) {
-            caras++;
-        }
+    for(long long int  i = 0; i < qtd; i++) {
+        caras += (rand() & 1);
     }
     return caras;
 }
 
-int simulaJogo() {
-    int face;
-
-    face = (rand() % 2) + 1;
-
-    return face;
-}
